@@ -1,0 +1,73 @@
+@import '@app-review-explorer/ui/dist/index.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  }
+
+  body {
+    @apply bg-gray-50 text-gray-900 antialiased;
+  }
+}
+
+@layer components {
+  .container {
+    @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .review-card {
+    @apply bg-white rounded-lg border border-gray-200 p-6 shadow-sm hover:shadow-lg transition-all duration-200;
+  }
+
+  /* Ensure button elements with review-card class don't have default button styling */
+  button.review-card {
+    @apply border-gray-200 bg-white;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+  }
+
+  .section-heading {
+    @apply text-lg font-semibold text-gray-900 mb-4;
+  }
+}
+
+@layer utilities {
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* Animation for newly loaded reviews */
+  @keyframes pulse-once {
+    0% {
+      background-color: theme('colors.blue.50');
+      transform: scale(1.01);
+    }
+    50% {
+      background-color: theme('colors.blue.100');
+      transform: scale(1.02);
+    }
+    100% {
+      background-color: transparent;
+      transform: scale(1);
+    }
+  }
+
+  .animate-pulse-once {
+    animation: pulse-once 1.5s ease-out;
+    border-radius: 0.5rem;
+  }
+}
