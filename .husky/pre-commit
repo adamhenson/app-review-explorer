@@ -1,0 +1,14 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# Only run biome on staged files
+STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep -E '\.(ts|tsx|js|jsx|json)$' | tr '\n' ' ')
+
+if [ -n "$STAGED_FILES" ]; then
+  echo "Running biome on staged files: $STAGED_FILES"
+  npx biome check $STAGED_FILES
+  npx biome format --write $STAGED_FILES
+  git add $STAGED_FILES
+else
+  echo "No staged files to check"
+fi

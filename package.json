@@ -1,0 +1,49 @@
+{
+  "name": "app-review-explorer",
+  "version": "1.0.0",
+  "description": "A web application for exploring ChatGPT app reviews with search, filtering, and pagination",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm run build:ui && npm run dev --workspace=apps/frontend",
+    "build": "npm run build:ui && npm run build --workspace=apps/frontend",
+    "build:ui": "npm run build --workspace=packages/ui",
+    "start": "npm run start --workspace=apps/frontend",
+    "lint": "biome check apps/*/src packages/*/src",
+    "lint:fix": "biome check --write apps/*/src packages/*/src",
+    "format": "biome format --write apps/*/src packages/*/src",
+    "format:check": "biome format apps/*/src packages/*/src",
+    "storybook": "npm run dev --workspace=packages/storybook",
+    "storybook:build": "npm run build --workspace=packages/storybook",
+    "type-check": "npm run type-check --workspace=apps/frontend",
+    "type-check:ui": "npm run type-check --workspace=packages/ui",
+    "clean": "npm run clean --workspace=packages/ui && npm run clean --workspace=apps/frontend",
+    "prepare": "husky install || exit 0"
+  },
+  "keywords": [
+    "nextjs",
+    "react",
+    "typescript",
+    "app-reviews",
+    "frontend",
+    "ui-components"
+  ],
+  "author": "App Review Explorer Team",
+  "license": "MIT",
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "husky": "^9.1.7"
+  },
+  "lint-staged": {
+    "apps/*/src/**/*.{ts,tsx,js,jsx,json}": [
+      "biome check --fix"
+    ],
+    "packages/*/tests/**/*.{ts,tsx,js,jsx,json}": [
+      "biome check --fix"
+    ]
+  }
+}
