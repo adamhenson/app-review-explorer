@@ -1,0 +1,29 @@
+{
+  "name": "ChatGPT Reviews Explorer",
+  "short_name": "Reviews Explorer",
+  "description": "Explore and filter user reviews for the ChatGPT iOS app",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F9FAFB",
+  "theme_color": "#F59E0B",
+  "icons": [
+    {
+      "src": "/icon",
+      "sizes": "32x32",
+      "type": "image/png",
+      "purpose": "favicon"
+    },
+    {
+      "src": "/apple-icon",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "apple touch icon"
+    },
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
