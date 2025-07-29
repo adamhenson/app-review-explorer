@@ -1,5 +1,5 @@
 /**
- * Review data structure from the Appfigures API
+ * Review data structure from the external reviews API
  */
 export interface Review {
   /** Unique identifier for the review */

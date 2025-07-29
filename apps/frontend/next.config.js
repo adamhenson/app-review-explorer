@@ -9,7 +9,7 @@ const nextConfig = {
   },
   transpilePackages: ['@app-review-explorer/ui'],
   env: {
-    APPFIGURES_API_URL: process.env.APPFIGURES_API_URL,
+    REVIEWS_API_URL: process.env.REVIEWS_API_URL,
   },
 };
 

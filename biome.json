@@ -2,14 +2,16 @@
   "$schema": "https://biomejs.dev/schemas/2.1.2/schema.json",
   "files": {
     "ignoreUnknown": false,
-    "includes": ["**/*.{js,jsx,ts,tsx,json}"],
-    "experimentalScannerIgnores": [
+    "include": ["**/*.{js,jsx,ts,tsx,json}"],
+    "ignore": [
       "apps/frontend/dist/**",
       "apps/frontend/.next/**",
       "node_modules/**",
 
       "packages/ui/dist/**",
       "packages/storybook/storybook-static/**",
+      "packages/e2e/playwright-report/**",
+      "packages/e2e/test-results/**",
       "**/dist/**",
       "**/.next/**",
       "**/node_modules/**",

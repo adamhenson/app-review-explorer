@@ -160,7 +160,7 @@ npm run dev
 Create `.env.local`:
 
 ```bash
-APPFIGURES_API_URL=https://example.com/api/reviews
+REVIEWS_API_URL=https://example.com/api/reviews
 ```
 
 ### Available Scripts
@@ -235,7 +235,7 @@ npm run start
 
 ### Environment Variables
 
-- `APPFIGURES_API_URL`: Reviews API endpoint
+- `REVIEWS_API_URL`: Reviews API endpoint
 - `NODE_ENV`: Environment (production/development)
 
 ### Hosting Recommendations

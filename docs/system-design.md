@@ -31,13 +31,11 @@ root/
 ├── packages/
 │   ├── ui/                   # Reusable Tailwind/React Aria component library
 │   ├── storybook/            # Isolated Storybook instance
-
+│   └── e2e/                  # Playwright E2E testing package
 ├── .github/
 │   └── workflows/
-│       └── ci.yml             # GitHub Actions pipeline
+│       └── e2e-tests.yml     # GitHub Actions pipeline for E2E tests and type checking
 ├── biome.json                # Shared Biome config
-├── playwright.config.ts
-├── tailwind.config.js
 ├── tsconfig.json
 ├── package.json
 └── README.md
@@ -231,6 +229,78 @@ These scripts run automatically in CI to enforce code quality and correctness.
 
 ---
 
+## 🎭 End-to-End Testing with Playwright
+
+### Testing Strategy
+
+The E2E testing package (`packages/e2e`) focuses specifically on the critical UX requirements from the assignment:
+
+1. **Loading States**: Validates that loading indicators are displayed while fetching data
+2. **Error Handling**: Ensures errors are handled gracefully with appropriate messages
+
+### Technology Choice
+
+**Playwright** was chosen for E2E testing due to:
+
+- **Cross-browser testing**: Native support for Chrome and WebKit (Safari)
+- **Device simulation**: Mobile Safari testing using iPhone device simulation
+- **Network mocking**: Comprehensive API mocking for error scenarios
+- **CI/CD integration**: Excellent GitHub Actions support with artifacts
+- **Developer experience**: Rich debugging tools and test UI mode
+
+### Test Coverage
+
+```typescript
+// Loading States
+- Initial page load shows loading indicator
+- Search triggers loading state
+- Rating filter triggers loading state
+- "Load More" button shows loading state
+
+// Error Handling
+- Network failures show error message
+- API server errors display appropriate messages
+- Empty results show "No reviews found" message
+- Search failures with recovery testing
+- Filter failures with recovery testing
+- Timeout handling for slow responses
+```
+
+### Browser Matrix
+
+| Browser        | Viewport  | Device Simulation     |
+| -------------- | --------- | --------------------- |
+| Chrome Desktop | 1280x720  | Standard desktop      |
+| Mobile Safari  | iPhone 12 | iOS device simulation |
+
+### CI/CD Integration
+
+The GitHub Actions workflow (`.github/workflows/e2e-tests.yml`) provides:
+
+- **Sequential execution**: Type checking runs first, then E2E tests
+- **Parallel browser testing**: Chrome and Safari tests run simultaneously
+- **Artifact collection**: Test reports, screenshots, and videos on failure
+- **Environment isolation**: Dedicated test environment with API mocking
+- **Failure analysis**: Detailed traces and debugging information
+
+### Local Development
+
+```bash
+# Install Playwright browsers (first time)
+npm run install --workspace=packages/e2e
+
+# Run tests headless
+npm run test
+
+# Debug with visible browser
+npm run test:e2e:headed
+
+# Interactive test development
+npm run test:ui --workspace=packages/e2e
+```
+
+---
+
 ## 📃 Implementation Summary
 
 | Feature            | Technology Used          | Location             | Status |
@@ -238,6 +308,7 @@ These scripts run automatically in CI to enforce code quality and correctness.
 | Frontend App       | Next.js 15 + React 19    | `apps/frontend`      | ✅     |
 | Component Library  | React Aria + Tailwind    | `packages/ui`        | ✅     |
 | Documentation      | Storybook                | `packages/storybook` | ✅     |
+| E2E Testing        | Playwright               | `packages/e2e`       | ✅     |
 | Data Fetching      | TanStack Query           | `apps/frontend`      | ✅     |
 | Code Quality       | Biome (lint + format)    | All packages         | ✅     |
 | Type Safety        | TypeScript (strict)      | All packages         | ✅     |
@@ -245,6 +316,7 @@ These scripts run automatically in CI to enforce code quality and correctness.
 | Accessibility      | React Aria Components    | All UI components    | ✅     |
 | Search & Filtering | Debounced + Multi-select | Frontend app         | ✅     |
 | Text Truncation    | CSS + Modal Expansion    | Review cards         | ✅     |
+| CI/CD Pipeline     | GitHub Actions           | `.github/workflows`  | ✅     |
 
 ---
 
@@ -264,6 +336,7 @@ These scripts run automatically in CI to enforce code quality and correctness.
 - 🔳 **Visual Regression Testing**: Host Storybook on Chromatic for visual diffs
 - 🧪 **Unit Testing**: Add Jest + React Testing Library for component tests
 - 📈 **Accessibility Testing**: Automated a11y testing in CI pipeline
+- 🎯 **Extended E2E Coverage**: Add tests for advanced user flows and edge cases
 
 ### Performance & Infrastructure
 

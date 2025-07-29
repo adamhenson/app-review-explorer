@@ -113,7 +113,10 @@ The application will be available at `http://localhost:3000`.
 - `npm run format:check` - Check code formatting
 - `npm run type-check` - Type check frontend application
 - `npm run type-check:ui` - Type check UI library
-
+- `npm run test` - Run E2E tests with Playwright
+- `npm run test:e2e` - Run E2E tests (alias)
+- `npm run test:e2e:headed` - Run E2E tests with visible browser
+- `npm run test:ui` - Run E2E tests in Playwright UI mode
 - `npm run clean` - Clean build artifacts from all packages
 
 ### Package-Specific Commands
@@ -127,7 +130,7 @@ Each package has its own scripts. See individual README files for details.
 The application integrates with the external reviews API through a Next.js API proxy:
 
 - **Internal API**: `/api/reviews` (proxies to external reviews API)
-- **External API**: Configured via `APPFIGURES_API_URL` environment variable
+- **External API**: Configured via `REVIEWS_API_URL` environment variable
 - **CORS Solution**: Requests proxied through Next.js API routes to avoid CORS issues
 - **Supported Filters**: Keyword search, star ratings, sorting, pagination
 - **Data Caching**: Implemented with TanStack Query for optimal performance
@@ -166,6 +169,30 @@ The project includes a comprehensive design system built with:
 - **Visual Testing**: Stories covering default, loading, error, and interaction states
 - **Component Library**: Full coverage of Button, SearchField, Select, Modal, Popover, Checkbox, Loading, and StarRating components
 
+### End-to-End Testing
+
+- **Playwright**: E2E testing focused on critical user flows and assignment requirements
+- **Cross-Browser**: Tests run on Desktop Chrome and Mobile Safari
+- **Loading States**: Validates loading indicators during data fetching
+- **Error Handling**: Ensures graceful error handling with appropriate messages
+- **CI/CD Integration**: Automated testing on pull requests and main branch pushes
+
+#### Running E2E Tests
+
+```bash
+# Run all E2E tests (headless)
+npm run test
+
+# Run tests with visible browser
+npm run test:e2e:headed
+
+# Debug tests interactively
+npm run test:ui --workspace=packages/e2e
+
+# Install Playwright browsers (first time only)
+npm run install --workspace=packages/e2e
+```
+
 ## 📝 Development Guidelines
 
 ### Code Style
@@ -195,7 +222,7 @@ npm start
 
 Required environment variables for production:
 
-- `APPFIGURES_API_URL`: Reviews API endpoint URL
+- `REVIEWS_API_URL`: Reviews API endpoint URL
 
 ## 🔗 Links
 
