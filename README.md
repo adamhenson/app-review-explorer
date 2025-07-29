@@ -197,21 +197,8 @@ Required environment variables for production:
 
 - `APPFIGURES_API_URL`: Reviews API endpoint URL
 
-## 🤝 Contributing
-
-1. Follow the established code style and conventions
-2. Write tests for new features
-3. Update documentation as needed
-4. Use conventional commit format
-5. Ensure all checks pass before submitting
-
-## 📄 License
-
-This project is private and proprietary.
-
 ## 🔗 Links
 
 - [System Design Documentation](docs/system-design.md)
-- [Assignment Requirements](_/assignment.md)
 - [Frontend Application](apps/frontend/README.md)
 - [UI Component Library](packages/ui/README.md)
