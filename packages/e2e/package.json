@@ -1,0 +1,20 @@
+{
+  "name": "@app-review-explorer/e2e",
+  "version": "1.0.0",
+  "description": "End-to-end testing with Playwright for critical user flows",
+  "private": true,
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:debug": "playwright test --debug",
+    "test:ui": "playwright test --ui",
+    "report": "playwright show-report",
+    "install": "playwright install",
+    "install:deps": "playwright install-deps"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.49.1",
+    "@types/node": "^22.0.0",
+    "wait-on": "^8.0.1"
+  }
+}

@@ -46,9 +46,11 @@ const buildQueryString = (filters: ReviewFilters): string => {
 };
 
 /**
- * Fetches reviews from the Appfigures API with the specified filters
+ * Fetches reviews from the external reviews API with the specified filters
  */
-export const fetchReviews = async (filters: ReviewFilters = {}): Promise<ReviewsResponse> => {
+export const fetchReviews = async (
+  filters: ReviewFilters = {}
+): Promise<ReviewsResponse> => {
   const queryString = buildQueryString(filters);
   const url = queryString ? `${API_BASE_URL}?${queryString}` : API_BASE_URL;
 
@@ -83,7 +85,9 @@ export const fetchReviews = async (filters: ReviewFilters = {}): Promise<Reviews
 
     // Handle network errors, JSON parsing errors, etc.
     throw new ApiError(
-      `Network error: ${error instanceof Error ? error.message : 'Unknown error'}`
+      `Network error: ${
+        error instanceof Error ? error.message : 'Unknown error'
+      }`
     );
   }
 };
@@ -93,7 +97,8 @@ export const fetchReviews = async (filters: ReviewFilters = {}): Promise<Reviews
  */
 export const reviewsQueryKeys = {
   all: ['reviews'] as const,
-  filtered: (filters: ReviewFilters) => ['reviews', 'filtered', filters] as const,
+  filtered: (filters: ReviewFilters) =>
+    ['reviews', 'filtered', filters] as const,
   paginated: (filters: ReviewFilters, page: number) =>
     ['reviews', 'paginated', filters, page] as const,
 };

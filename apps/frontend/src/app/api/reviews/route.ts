@@ -1,16 +1,19 @@
 import { type NextRequest, NextResponse } from 'next/server';
 
-const EXTERNAL_API_URL = process.env.APPFIGURES_API_URL;
+const EXTERNAL_API_URL = process.env.REVIEWS_API_URL;
 
 /**
- * API route to proxy requests to the Appfigures reviews API
+ * API route to proxy requests to the external reviews API
  * This avoids CORS issues by making the request from the server side
  */
 export async function GET(request: NextRequest) {
   try {
     if (!EXTERNAL_API_URL) {
-      console.error('APPFIGURES_API_URL environment variable is not set');
-      return NextResponse.json({ error: 'API configuration error' }, { status: 500 });
+      console.error('REVIEWS_API_URL environment variable is not set');
+      return NextResponse.json(
+        { error: 'API configuration error' },
+        { status: 500 }
+      );
     }
 
     const { searchParams } = new URL(request.url);
@@ -35,7 +38,11 @@ export async function GET(request: NextRequest) {
     });
 
     if (!response.ok) {
-      console.error('External API error:', response.status, response.statusText);
+      console.error(
+        'External API error:',
+        response.status,
+        response.statusText
+      );
       return NextResponse.json(
         {
           error: 'Failed to fetch reviews from external API',

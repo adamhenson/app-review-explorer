@@ -25,13 +25,16 @@ export const SearchField = ({
   placeholder?: string;
 } & SearchFieldProps) => {
   return (
-    <AriaSearchField className={cn('flex flex-col gap-1', className)} {...props}>
-      <Label className='text-sm font-medium text-gray-700'>{label}</Label>
-      <div className='relative'>
+    <AriaSearchField
+      className={cn('flex flex-col gap-1', className)}
+      {...props}
+    >
+      <Label className="text-sm font-medium text-gray-700">{label}</Label>
+      <div className="relative">
         <Input
           placeholder={placeholder}
           className={cn(
-            'w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm',
+            'w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-base sm:text-sm',
             'placeholder:text-gray-400',
             'focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-1',
             'disabled:cursor-not-allowed disabled:opacity-50'
