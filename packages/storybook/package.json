@@ -4,7 +4,7 @@
   "description": "Storybook for component documentation and testing",
   "private": true,
   "scripts": {
-    "build": "storybook build",
+    "build": "cd ../.. && npm run build --workspace=packages/ui && cd packages/storybook && storybook build",
     "dev": "storybook dev -p 6006",
     "lint": "biome check .",
     "lint:fix": "biome check --write .",
