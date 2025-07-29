@@ -60,11 +60,6 @@ jobs:
       - name: Set environment variables
         run: echo "REVIEWS_API_URL=${{ secrets.REVIEWS_API_URL }}" >> $GITHUB_ENV
 
-      - name: Start application
-        run: |
-          npm run dev --workspace=apps/frontend &
-          npx wait-on http://localhost:3000 --timeout 60000
-
       - name: Run E2E tests
         run: npm run test --workspace=packages/e2e
 
