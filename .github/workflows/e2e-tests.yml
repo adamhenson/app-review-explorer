@@ -59,7 +59,15 @@ jobs:
 
       - name: Create frontend environment file
         run: |
+          echo "Working directory: $(pwd)"
+          echo "Secret value length: ${#REVIEWS_API_URL}"
+          mkdir -p apps/frontend
           echo "REVIEWS_API_URL=${{ secrets.REVIEWS_API_URL }}" > apps/frontend/.env.local
+          echo "Created .env.local file:"
+          cat apps/frontend/.env.local
+          echo "File size: $(wc -c < apps/frontend/.env.local) bytes"
+        env:
+          REVIEWS_API_URL: ${{ secrets.REVIEWS_API_URL }}
 
       - name: Run E2E tests
         run: npm run test --workspace=packages/e2e
