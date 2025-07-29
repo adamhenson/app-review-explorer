@@ -4,7 +4,7 @@
   "description": "App Review Explorer Frontend - Next.js 15 + React 19",
   "private": true,
   "scripts": {
-    "build": "next build",
+    "build": "cd ../.. && npm run build --workspace=packages/ui && cd apps/frontend && next build",
     "dev": "next dev",
     "clean": "rm -rf .next",
     "lint": "biome check .",
