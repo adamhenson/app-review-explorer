@@ -22,7 +22,7 @@
     "type-check": "npm run type-check --workspace=apps/frontend",
     "type-check:ui": "npm run type-check --workspace=packages/ui",
     "clean": "npm run clean --workspace=packages/ui && npm run clean --workspace=apps/frontend",
-    "prepare": "husky install || exit 0"
+    "prepare": "husky install 2>/dev/null || true"
   },
   "keywords": [
     "nextjs",
